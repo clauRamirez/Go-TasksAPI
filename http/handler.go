@@ -3,7 +3,7 @@ package http
 import (
 	"fmt"
 	"github.com/gorilla/mux"
-	app "go-api-test-2"
+	app "go-api-test-2/models"
 	"net/http"
 )
 

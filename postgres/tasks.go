@@ -2,7 +2,7 @@ package postgres
 
 import (
 	"database/sql"
-	app "go-api-test-2"
+	app "go-api-test-2/models"
 )
 
 type TaskService struct {
