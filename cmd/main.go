@@ -3,7 +3,6 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 	"go-api-test-2/http"
@@ -46,9 +45,8 @@ func main() {
 	var h http.Handler
 	h.TaskService = ts
 
-	r := mux.NewRouter().StrictSlash(true).PathPrefix("/api").Subrouter()
+	var r http.Router
+	r.InitRoutes(h)
 
-	h.InitRoutes(r)
-
-	h.Run(r)
+	r.Run(h)
 }
