@@ -5,9 +5,9 @@ import (
 )
 
 /*
-	Handles user request/responses to/from API
-*/
+	User request/responses to/from API
 
+*/
 type Handler struct {
 	TaskService models.TaskService
 }

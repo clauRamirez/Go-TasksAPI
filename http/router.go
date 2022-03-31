@@ -6,6 +6,9 @@ import (
 	"net/http"
 )
 
+/*
+	HTTP server
+*/
 type Router struct {
 	mux.Router
 }

@@ -6,9 +6,8 @@ import (
 )
 
 /*
-	Database implementation of Service
+	Database implementation
 */
-
 type TaskService struct {
 	*sql.DB
 }
