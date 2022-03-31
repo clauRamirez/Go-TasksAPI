@@ -23,7 +23,7 @@ func (r *Router) InitRoutes(h Handler) {
 	sr.HandleFunc("/tasks/{id}", h.updateTask).Methods("PUT")
 }
 
-func (r *Router) Run(h Handler, addr string) {
+func (r *Router) Run(addr string) {
 	if err := http.ListenAndServe(fmt.Sprintf(":%s", addr), r); err != nil {
 		panic(err)
 	}

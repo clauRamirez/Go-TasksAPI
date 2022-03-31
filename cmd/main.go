@@ -12,9 +12,7 @@ import (
 
 func main() {
 	fmt.Println("Loading env variables...")
-	// load .env from file
-	err := godotenv.Load(".env")
-	if err != nil {
+	if err := godotenv.Load(".env"); err != nil {
 		panic(err)
 	}
 
@@ -26,7 +24,6 @@ func main() {
 	}
 
 	fmt.Println("Connecting to database...")
-	// connect to db
 	user, passwd, dbname := os.Getenv("DB_USERNAME"), os.Getenv("DB_PASSWORD"), os.Getenv("DB_NAME")
 	credentials := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", user, passwd, dbname)
 	db, err := sql.Open("postgres", credentials)
@@ -35,14 +32,7 @@ func main() {
 	}
 	defer db.Close()
 
-	// ping db
-	err = db.Ping()
-	if err != nil {
-		panic(err)
-	}
-
 	fmt.Println("Seeding database...")
-	// seed db
 	if err := postgres.Seeder(db); err != nil {
 		panic(err)
 	}
@@ -61,5 +51,5 @@ func main() {
 	r.InitRoutes(h)
 
 	fmt.Printf("HTTP server listening on port %s\n", PORT)
-	r.Run(h, PORT)
+	r.Run(PORT)
 }
