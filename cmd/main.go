@@ -11,12 +11,21 @@ import (
 )
 
 func main() {
+	fmt.Println("Loading env variables...")
 	// load .env from file
 	err := godotenv.Load(".env")
 	if err != nil {
 		panic(err)
 	}
 
+	var PORT string
+	if val, ok := os.LookupEnv("PORT"); ok {
+		PORT = val
+	} else {
+		PORT = "8080"
+	}
+
+	fmt.Println("Connecting to database...")
 	// connect to db
 	user, passwd, dbname := os.Getenv("DB_USERNAME"), os.Getenv("DB_PASSWORD"), os.Getenv("DB_NAME")
 	credentials := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", user, passwd, dbname)
@@ -32,11 +41,13 @@ func main() {
 		panic(err)
 	}
 
+	fmt.Println("Seeding database...")
 	// seed db
 	if err := postgres.Seeder(db); err != nil {
 		panic(err)
 	}
 
+	fmt.Println("Creating services and embedding handlers...")
 	// create service
 	ts := &postgres.TaskService{DB: db}
 
@@ -45,8 +56,10 @@ func main() {
 	var h http.Handler
 	h.TaskService = ts
 
+	fmt.Println("Initializing HTTP routes...")
 	var r http.Router
 	r.InitRoutes(h)
 
-	r.Run(h)
+	fmt.Printf("HTTP server listening on port %s\n", PORT)
+	r.Run(h, PORT)
 }

@@ -27,8 +27,8 @@ func (r *Router) InitRoutes(h Handler) {
 	sr.HandleFunc("/tasks/{id}", h.updateTask).Methods("PUT")
 }
 
-func (r *Router) Run(h Handler) {
-	if err := http.ListenAndServe(":8080", r); err != nil {
+func (r *Router) Run(h Handler, addr string) {
+	if err := http.ListenAndServe(fmt.Sprintf(":%s", addr), r); err != nil {
 		panic(err)
 	}
 }

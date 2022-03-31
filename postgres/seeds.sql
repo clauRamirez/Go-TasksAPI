@@ -8,6 +8,6 @@ CREATE TABLE tasks (
 );
 
 INSERT INTO tasks(name, description, is_done) VALUES('learn Go basics', 'learn basics of the Go programming language', true);
-INSERT INTO tasks(name, description, is_done) VALUES('write api', 'create a simple api with crud operations with Go');
-INSERT INTO tasks(name, description, is_done) VALUES('push github', 'push project to public github repo');
-INSERT INTO tasks(name, description, is_done) VALUES('learn fyne', 'learn the fyne toolkit');
+INSERT INTO tasks(name, description) VALUES('write api', 'create a simple api with crud operations with Go');
+INSERT INTO tasks(name, description) VALUES('push github', 'push project to public github repo');
+INSERT INTO tasks(name, description) VALUES('learn fyne', 'learn the fyne toolkit');
