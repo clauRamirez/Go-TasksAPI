@@ -36,8 +36,7 @@ func (h *Handler) deleteTask(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	err = h.TaskService.Delete(id)
-	if err != nil {
+	if err = h.TaskService.Delete(id); err != nil {
 		panic(err)
 	}
 
