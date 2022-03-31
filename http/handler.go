@@ -1,9 +1,13 @@
 package http
 
 import (
-	app "go-api-test-2/models"
+	"go-api-test-2/models"
 )
 
+/*
+	Handles user request/responses to/from API
+*/
+
 type Handler struct {
-	TaskService app.TaskService
+	TaskService models.TaskService
 }

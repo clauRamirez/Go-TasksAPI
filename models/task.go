@@ -8,9 +8,9 @@ type Task struct {
 }
 
 type TaskService interface {
-	//Task(id int) (*Task, error)
-	Tasks() ([]*Task, error)
-	//CreateTask(u *Task) error
-	//DeleteTask(id int) error
-	//UpdateTask(u *Task) error
+	Get(id int) (*Task, error)
+	GetAll() ([]*Task, error)
+	Create(t *Task) error
+	Delete(id int) error
+	Update(t Task) error
 }
